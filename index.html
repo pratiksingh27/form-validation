@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        body{
+            background-color: #3498db;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #container{
+            background-color: #fff;
+            padding: 50px;
+            text-align: center;
+            border-radius: 10px;
+        }
+        h2{
+            margin: 0px 0px 10px 0px;
+
+        }
+        input{
+            width: 90%;
+            margin: 10px 0px;
+            padding: 10px;
+        }
+        input[type="submit"]{
+            width: 102.5%;
+            background-color: #3498db;
+            border: 0px solid #fff;
+            color: #fff;
+            border-radius: 5px;
+        }
+        .error{
+            color: red;
+            text-align: left;
+            margin: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container" onsubmit="return validate()">
+        <h2>Login</h2>
+        <form action="">
+            <input type="text" placeholder="User Name" id="uname"><br>
+            <p id="usererror" class="error"></p>
+            <input type="password" placeholder="Password" id="pass"><br>
+            <p id="passerror" class="error"></p>
+            <input type="submit">
+        </form>
+
+    </div>
+
+    <script>
+        let uname = document.getElementById("uname");
+        let pass = document.getElementById("pass");
+        let flag = 1;
+
+        function validate(){
+           if(uname.value == ""){
+               document.getElementById("usererror").innerHTML = "User name is empty";
+               uname.style.border = "1px solid red";
+               flag=0;
+           }
+           else if(uname.value.length<3){
+            document.getElementById("usererror").innerHTML = "User name required min 3 char";
+            uname.style.border = "1px solid red";
+            flag=0;
+           }
+           else{
+            document.getElementById("usererror").innerHTML = "";
+            flag=1;
+           }
+
+           if(pass.value == ""){
+               document.getElementById("passerror").innerHTML = "Password is empty";
+               pass.style.border = "1px solid red";
+               flag=0;
+           }
+           else if(pass.value.length<4 || pass.value.length>10){
+            document.getElementById("passerror").innerHTML = "Password should have 4-10 char";
+            pass.style.border = "1px solid red";
+            flag=0;
+           }
+           else{
+            document.getElementById("passerror").innerHTML = "";
+            flag=1;
+           }
+           
+           if(flag){
+               return true;
+           }
+           else{
+               return false;
+           }
+        }
+    </script>
+</body>
+</html>
