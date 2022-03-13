@@ -1,104 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Validation</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        body{
+        /* body {
             background-color: #3498db;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            width: 100%;
         }
-        #container{
+
+        #container {
             background-color: #fff;
             padding: 50px;
+            max-width: 100%;
+            width: calc(100vw-50vw);
             text-align: center;
             border-radius: 10px;
         }
-        h2{
+
+        h2 {
             margin: 0px 0px 10px 0px;
 
         }
-        input{
+
+        input {
             width: 90%;
             margin: 10px 0px;
             padding: 10px;
         }
-        input[type="submit"]{
-            width: 102.5%;
+
+        input[type="submit"] {
+            width: 100%;
             background-color: #3498db;
             border: 0px solid #fff;
             color: #fff;
             border-radius: 5px;
         }
-        .error{
+
+        .error {
             color: red;
             text-align: left;
             margin: 0px;
-        }
+        } */
     </style>
 </head>
+
 <body>
+    <!-- <div class="container"> -->
+    <!-- <div class="header">
+        <h1>Registration Form</h1>
+    </div> -->
     <div id="container" onsubmit="return validate()">
-        <h2>Login</h2>
-        <form action="">
-            <input type="text" placeholder="User Name" id="uname"><br>
+        <div class="form-designe">
+        <h1>Registration Form</h1>
+    </div>
+    <div class="form-designe">
+        <form action="" class="form">
+            <label for="name">Username</label><br>
+            <input type="text" placeholder="Entre your full Name" id="uname" class="form-control" autocomplete="Off"><br>
             <p id="usererror" class="error"></p>
-            <input type="password" placeholder="Password" id="pass"><br>
+
+            <label for="name">Password</label><br>
+            <input type="password" placeholder="Entre your Password" id="pass" class="form-control"><br>
             <p id="passerror" class="error"></p>
+
+            <label for="name">Confirm Password</label><br>
+            <input type="password" placeholder="Conform your Password" id="cpass" class="form-control"><br>
+            <p id="cpasserror" class="error"></p>
+
+            <label for="name">Email</label><br>
+            <input type="text" placeholder="Entre your Email" id="text" class="form-control" autocomplete="Off"><br>
+            <p id="ibtext" class="error"></p>
+
+            <label for="name">Phone Number</label><br>
+            <input type="number" placeholder="Entre your Phone Number" id="number" class="form-control" autocomplete="Off"><br>
+            <p id="numbererror" class="error"></p>
+
+            <!-- <label for="name">Password</label><br>
+            <input type="password" placeholder="Entre your Password" id="pass" class="form-control"><br>
+            <p id="passerror" class="error"></p>
+
+            <label for="name">Confirm Password</label><br>
+            <input type="password" placeholder="Conform your Password" id="cpass" class="form-control"><br>
+            <p id="cpasserror" class="error"></p> -->
+            <input type="Submit" value="submit" class="btn">
         </form>
+    </div>
 
     </div>
+<!-- </div> -->
 
     <script>
         let uname = document.getElementById("uname");
         let pass = document.getElementById("pass");
+        let cpass = document.getElementById("cpass")
+        
+
         let flag = 1;
 
-        function validate(){
-           if(uname.value == ""){
-               document.getElementById("usererror").innerHTML = "User name is empty";
-               uname.style.border = "1px solid red";
-               flag=0;
-           }
-           else if(uname.value.length<3){
-            document.getElementById("usererror").innerHTML = "User name required min 3 char";
-            uname.style.border = "1px solid red";
-            flag=0;
-           }
-           else{
-            document.getElementById("usererror").innerHTML = "";
-            uname.style.border = "1px solid green";
-            flag=1;
-           }
+        function validate() {
+            if (uname.value.trim() == "") {
+                document.getElementById("usererror").innerHTML = "User name is empty";
+                uname.style.border = "1px solid red";
+                flag = 0;
 
-           if(pass.value == ""){
-               document.getElementById("passerror").innerHTML = "Password is empty";
-               pass.style.border = "1px solid red";
-               flag=0;
-           }
-           else if(pass.value.length<4 || pass.value.length>10){
-            document.getElementById("passerror").innerHTML = "Password should have 4-10 char";
-            pass.style.border = "1px solid red";
-            flag=0;
-           }
-           else{
-            document.getElementById("passerror").innerHTML = "";
-            pass.style.border = "1px solid green";
-            flag=1;  
-           }
-           
-           if(flag){
-               return true;
-           }
-           else{
-               return false;
-           }
+            } else if (uname.value.length < 4) {
+                document.getElementById("usererror").innerHTML = "User name required min 4 char";
+                uname.style.border = "1px solid red";
+                flag = 0;
+
+            } else {
+                document.getElementById("usererror").innerHTML = "";
+                uname.style.border = "1px solid green";
+                flag = 1;
+
+            }
+
+            if (pass.value.trim() == "") {
+                document.getElementById("passerror").innerHTML = "Password is empty";
+                pass.style.border = "1px solid red";
+                flag = 0;
+
+            } else if (pass.value.length < 4 || pass.value.length > 10) {
+                document.getElementById("passerror").innerHTML = "Password should have 4-10 char";
+                pass.style.border = "1px solid red";
+                flag = 0;
+            } else {
+                document.getElementById("passerror").innerHTML = "";
+                pass.style.border = "1px solid green";
+                flag = 1;
+            }
+
+            if(pass.value != cpass.value){
+                document.getElementById("cpasserror").innerHTML = "Password did not match";
+                cpass.style.border = "1px solid red";
+                false;
+            }
+            else{
+                document.getElementById("cpasserror").innerHTML = "";
+                cpass.style.border = "1px solid green";
+                true;
+            }
+            var text = document.getElementById("text").value;
+
+            var regx = /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)?$/;
+
+            if (regx.test(text)) {
+                document.getElementById("ibtext").innerHTML = "";
+                document.getElementById("text").style.border = "1px solid green";
+                true;
+            } else {
+                document.getElementById("ibtext").innerHTML = "Invalid";
+                document.getElementById("text").style.border = "1px solid red";
+                document.getElementById("ibtext").style.color = "red";
+                false;
+            }
+            var number = document.getElementById("number").value;
+
+            var reg = /^[7-9][0-9]{9}$/;
+
+            if (reg.test(number)) {
+                document.getElementById("numbererror").innerHTML = "";
+                document.getElementById("number").style.border = "1px solid green";
+                true;
+            } 
+            else {
+                document.getElementById("numbererror").innerHTML = "Invalid";
+                document.getElementById("number").style.border = "1px solid red";
+                document.getElementById("numbererror").style.color = "red";
+                false;
+
+            }
+            if (flag) {
+                return true;
+            } else {
+                return false;
+            }
+            // if(validate == true){
+            //     alert("hiii");
+            // }
         }
     </script>
 </body>
+
 </html>
